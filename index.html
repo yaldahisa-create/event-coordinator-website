@@ -1,98 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elegant Events</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ease & Grace | Event Coordination</title>
+  <meta name="description" content="Ease & Grace Event Coordination — elegant, seamless, and beautifully curated celebrations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f2ee;
+      --bg-soft:#fbf7f4;
+      --white:#ffffff;
+      --text:#2f2320;
+      --muted:#8f7d74;
+      --line:#e8ddd5;
+      --accent:#c79b7b;
+      --accent-deep:#b58463;
+      --shadow:0 14px 40px rgba(82,53,38,.08);
+      --radius-xl:34px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --max:1240px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(92%,var(--max));margin:0 auto}
+
+    header{
+      position:sticky;top:0;z-index:100;
+      background:rgba(247,242,238,.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(232,221,213,.8);
+    }
+    .nav{
+      min-height:92px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:14px;
+    }
+    .brand-mark{
+      width:46px;height:46px;border-radius:50%;
+      display:grid;place-items:center;
+      border:1px solid var(--line);
+      background:var(--bg-soft);
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.5rem;color:var(--accent-deep);
+    }
+    .brand-text strong{
+      display:block;
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.85rem;
+      letter-spacing:.02em;
+      font-weight:600;
+    }
+    .brand-text span{
+      display:block;
+      font-size:.76rem;
+      text-transform:uppercase;
+      letter-spacing:.26em;
+      color:var(--muted);
+      margin-top:2px;
+    }
+    nav ul{list-style:none;display:flex;align-items:center;gap:30px;flex-wrap:wrap}
+    nav a{font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:#5f4e47}
+    nav a:hover,.active{color:var(--accent-deep)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:54px;padding:0 28px;border-radius:999px;
+      font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.86rem;
+      transition:.25s ease;
+    }
+    .btn-primary{background:var(--accent);color:#fff;border:1px solid var(--accent)}
+    .btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep);transform:translateY(-1px)}
+    .btn-secondary{border:1px solid var(--line);background:var(--white);color:var(--text)}
+    .btn-secondary:hover{border-color:var(--accent);color:var(--accent-deep)}
+
+    .hero{padding:38px 0 36px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.02fr 1.08fr;
+      gap:34px;
+      align-items:center;
+    }
+    .hero-copy{
+      padding:24px 8px 24px 4px;
+    }
+    .eyebrow{
+      font-size:.88rem;text-transform:uppercase;letter-spacing:.22em;color:var(--muted);
+      margin-bottom:18px;font-weight:500;
+    }
+    h1,h2,h3,.script-title{font-family:'Cormorant Garamond',serif;font-weight:500;line-height:.95}
+    h1{font-size:clamp(3.2rem,8vw,6rem);margin-bottom:14px}
+    .script-title{
+      display:block;color:var(--accent-deep);
+      font-size:clamp(2.5rem,7vw,5.1rem);
+      font-style:italic;line-height:1;margin-top:2px;margin-bottom:8px;
+    }
+    .hero-sub{
+      max-width:580px;color:#6f5f58;font-size:1.06rem;margin:22px 0 28px;
+    }
+    .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+    .hero-meta{
+      display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:.9rem;
+      text-transform:uppercase;letter-spacing:.14em;
+    }
+    .hero-card{
+      background:var(--white);
+      border-radius:38px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      min-height:640px;
+      position:relative;
+    }
+    .hero-card img{
+      width:100%;height:100%;object-fit:cover;
+    }
+    .floating-badge{
+      position:absolute;left:28px;bottom:28px;
+      background:rgba(255,255,255,.92);
+      padding:18px 22px;border-radius:22px;backdrop-filter:blur(12px);
+      box-shadow:0 10px 25px rgba(70,41,26,.08);
+    }
+    .floating-badge strong{
+      display:block;font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--text)
+    }
+    .floating-badge span{font-size:.84rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted)}
+
+    section{padding:34px 0}
+    .section-head{
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+      margin-bottom:22px;
+    }
+    .section-head h2{font-size:clamp(2rem,4vw,3.2rem)}
+    .section-note{color:var(--muted);font-size:.95rem;text-transform:uppercase;letter-spacing:.18em}
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .service-card{
+      background:rgba(255,255,255,.6);
+      border:1px solid #efe5de;
+      border-radius:28px;
+      padding:28px 22px;
+      text-align:center;
+      box-shadow:0 8px 24px rgba(82,53,38,.03);
+    }
+    .icon-wrap{
+      width:64px;height:64px;border-radius:50%;margin:0 auto 18px;
+      background:var(--bg-soft);border:1px solid var(--line);
+      display:grid;place-items:center;color:var(--accent-deep);font-size:1.5rem;
+    }
+    .service-card h3{font-size:1.7rem;line-height:1.1;margin-bottom:10px}
+    .service-card p{color:var(--muted);margin-bottom:14px;font-size:.96rem}
+    .price{font-size:1.35rem;font-weight:700;color:var(--accent-deep)}
+    .small-btn{
+      display:inline-block;margin-top:16px;padding:11px 18px;border-radius:999px;
+      border:1px solid var(--line);font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;
+      background:#fff;
+    }
+
+    .about-grid{
+      display:grid;grid-template-columns:.92fr 1.08fr;gap:28px;align-items:center;
+    }
+    .about-photo{
+      background:var(--white);padding:14px;border-radius:36px;box-shadow:var(--shadow);
+    }
+    .about-photo img{border-radius:28px;height:640px;width:100%;object-fit:cover}
+    .about-copy{
+      padding:10px 10px 10px 18px;
+    }
+    .about-copy h2{font-size:clamp(2.5rem,5vw,4rem);margin-bottom:16px}
+    .about-copy .intro{font-size:1.18rem;color:var(--accent-deep);margin-bottom:22px}
+    .about-copy p{font-size:1.04rem;color:#665852;margin-bottom:18px;max-width:700px}
+    .quote-box{
+      margin-top:28px;padding:24px 28px;border:1px solid var(--line);
+      border-radius:26px;background:rgba(255,255,255,.45);
+      font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2rem;color:var(--accent-deep);
+    }
+
+    .gallery-wrap{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+    }
+    .gallery-wrap img{
+      height:240px;object-fit:cover;border-radius:24px;box-shadow:var(--shadow)
+    }
+
+    .contact-box{
+      background:linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,250,246,.88));
+      border:1px solid var(--line);border-radius:34px;padding:34px;
+      display:grid;grid-template-columns:1fr .95fr;gap:26px;align-items:center;
+    }
+    .contact-box h2{font-size:clamp(2.3rem,4vw,3.6rem);margin-bottom:12px}
+    .contact-box p{color:#6e6059;max-width:620px}
+    .contact-list{display:grid;gap:14px}
+    .contact-item{
+      background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px
+    }
+    .contact-item strong{display:block;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+
+    footer{padding:28px 0 44px;color:var(--muted);font-size:.93rem}
+    .footer-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px}
+
+    @media (max-width:1100px){
+      .hero-grid,.about-grid,.contact-box{grid-template-columns:1fr}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .gallery-wrap{grid-template-columns:repeat(2,1fr)}
+      .hero-card{min-height:520px}
+      .about-photo img{height:520px}
+      .about-copy{padding:0}
+    }
+    @media (max-width:760px){
+      .nav{padding:16px 0;flex-direction:column;align-items:flex-start}
+      nav ul{gap:16px}
+      .brand-text strong{font-size:1.55rem}
+      .hero{padding-top:24px}
+      h1{font-size:3rem}
+      .script-title{font-size:2.7rem}
+      .services-grid,.gallery-wrap{grid-template-columns:1fr}
+      .hero-card{min-height:360px;border-radius:28px}
+      .about-photo img{height:380px}
+      .contact-box{padding:24px}
+      .section-head{align-items:flex-start;flex-direction:column}
+      .hero-actions .btn{width:100%}
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <div class="brand-mark">E</div>
+        <div class="brand-text">
+          <strong>Ease &amp; Grace</strong>
+          <span>Event Coordination</span>
+        </div>
+      </a>
 
-<header>
-<img src="images/logo.png" class="logo">
+      <nav>
+        <ul>
+          <li><a class="active" href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-<nav>
-<a href="#about">About</a>
-<a href="#services">Services</a>
-<a href="#gallery">Gallery</a>
-<a href="#contact">Contact</a>
-</nav>
-</header>
+      <a href="#contact" class="btn btn-primary">Inquire Now</a>
+    </div>
+  </header>
 
-<section class="hero">
-<h1>Creating Unforgettable Moments</h1>
-<p>Elegant planning and seamless coordination</p>
-<button>Book Your Date</button>
-</section>
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Elegant • Stress-Free • Seamless Events</div>
+          <h1>We Create</h1>
+          <span class="script-title">Unforgettable</span>
+          <h1>Moments</h1>
+          <p class="hero-sub">
+            Ease &amp; Grace brings calm coordination, intentional details, and polished event execution so your celebration feels beautiful from beginning to end.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Book Your Date</a>
+            <a class="btn btn-secondary" href="#services">View Services</a>
+          </div>
+          <div class="hero-meta">
+            <span>Weddings</span>
+            <span>•</span>
+            <span>Private Events</span>
+            <span>•</span>
+            <span>Luxury Coordination</span>
+          </div>
+        </div>
 
-<section id="about">
-<div class="about-container">
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80" alt="Elegant event table setting" />
+          <div class="floating-badge">
+            <strong>Beautifully Planned</strong>
+            <span>with ease &amp; grace</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<img src="images/coordinator.jpg" class="about-img">
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Our Services</h2>
+          <div class="section-note">Tailored support for every celebration</div>
+        </div>
 
-<div class="about-text">
-<h2>About Me</h2>
-<p>Hello, I’m [Coordinator Name], an event coordinator passionate about creating elegant, seamless celebrations.</p>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="icon-wrap">✦</div>
+            <h3>Day-Of<br>Coordination</h3>
+            <p>For clients who planned the event and want a calm expert to oversee the final execution.</p>
+            <div class="price">Starting at $650</div>
+            <a href="#contact" class="small-btn">Learn More</a>
+          </article>
 
-<p>From weddings to private events, I focus on every detail so you can enjoy the moment.</p>
-</div>
+          <article class="service-card">
+            <div class="icon-wrap">✿</div>
+            <h3>Partial<br>Planning</h3>
+            <p>Thoughtful help with timeline management, vendor communication, and polished event flow.</p>
+            <div class="price">Starting at $1,200</div>
+            <a href="#contact" class="small-btn">Learn More</a>
+          </article>
 
-</div>
-</section>
+          <article class="service-card">
+            <div class="icon-wrap">❊</div>
+            <h3>Full Event<br>Coordination</h3>
+            <p>Comprehensive support from concept to celebration for a beautifully managed experience.</p>
+            <div class="price">Starting at $2,500</div>
+            <a href="#contact" class="small-btn">Learn More</a>
+          </article>
 
-<section id="services">
+          <article class="service-card">
+            <div class="icon-wrap">♡</div>
+            <h3>Custom<br>Packages</h3>
+            <p>Tailored options designed around your vision, guest count, venue, and event needs.</p>
+            <div class="price">Available</div>
+            <a href="#contact" class="small-btn">Inquire</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<h2>Services</h2>
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-photo">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80" alt="Portrait of the lead event coordinator" />
+        </div>
 
-<div class="services">
+        <div class="about-copy">
+          <div class="eyebrow">About Me</div>
+          <h2>Where elegance meets ease in event coordination.</h2>
+          <p class="intro">Hello, I’m the heart behind Ease &amp; Grace.</p>
+          <p>
+            I specialize in coordinating refined, seamless events with a calm presence and an eye for every important detail. My goal is to make sure your celebration feels elevated, organized, and unforgettable.
+          </p>
+          <p>
+            From weddings to private occasions, I work closely with each client to bring their vision to life with intentional support, thoughtful planning, and grace-filled execution.
+          </p>
+          <a href="#gallery" class="btn btn-primary">Browse Gallery</a>
+          <div class="quote-box">“Let’s bring your vision to life.”</div>
+        </div>
+      </div>
+    </section>
 
-<div class="card">
-<h3>Day of Coordination</h3>
-<p>Starting at $650</p>
-</div>
+    <section id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <h2>Gallery</h2>
+          <div class="section-note">A space to showcase weddings, private events, décor, and behind-the-scenes moments</div>
+        </div>
+        <div class="gallery-wrap">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" alt="Wedding ceremony decor" />
+          <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80" alt="Reception floral styling" />
+          <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80" alt="Event table setup" />
+          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=80" alt="Elegant event reception" />
+        </div>
+      </div>
+    </section>
 
-<div class="card">
-<h3>Partial Planning</h3>
-<p>Starting at $1200</p>
-</div>
+    <section id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <h2>Client Reviews</h2>
+          <div class="section-note">A place to build trust with kind words from past clients</div>
+        </div>
 
-<div class="card">
-<h3>Full Planning</h3>
-<p>Starting at $2500</p>
-</div>
+        <div class="services-grid">
+          <article class="service-card" style="text-align:left;">
+            <h3 style="font-size:1.5rem;margin-bottom:14px;">Warm, organized, and seamless</h3>
+            <p>Ease &amp; Grace made our event feel so peaceful. Every detail was handled beautifully, and I was actually able to enjoy the day.</p>
+            <div class="price" style="font-size:1rem;">— Future client review</div>
+          </article>
 
-</div>
+          <article class="service-card" style="text-align:left;">
+            <h3 style="font-size:1.5rem;margin-bottom:14px;">Elegant from start to finish</h3>
+            <p>The communication, setup, and coordination were amazing. Everything felt polished, intentional, and stress-free.</p>
+            <div class="price" style="font-size:1rem;">— Future client review</div>
+          </article>
 
-</section>
+          <article class="service-card" style="text-align:left;">
+            <h3 style="font-size:1.5rem;margin-bottom:14px;">A beautiful experience</h3>
+            <p>She truly brought our vision to life. I would recommend Ease &amp; Grace to anyone looking for a coordinator with excellence and care.</p>
+            <div class="price" style="font-size:1rem;">— Future client review</div>
+          </article>
 
-<section id="gallery">
+          <article class="service-card" style="text-align:left;">
+            <h3 style="font-size:1.5rem;margin-bottom:14px;">Leave a Review</h3>
+            <p>You can later connect this section to a Google Form, Google Reviews, or a custom review form so clients can submit testimonials after each event.</p>
+            <a href="#contact" class="small-btn">Add Review Link Later</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<h2>Recent Events</h2>
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <div class="eyebrow">Contact</div>
+            <h2>Let’s Plan Your Event</h2>
+            <p>
+              Ready to create something beautiful? Reach out to discuss your date, your event type, and the experience you want your guests to remember.
+            </p>
+          </div>
+          <div class="contact-list">
+            <div class="contact-item">
+              <strong>Email</strong>
+              <span>easeandgraceeventsco@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <strong>Instagram</strong>
+              <span><div class="contact-item">
+              <strong>Instagram</strong>
+              <span><a href="https://www.instagram.com/easeandgrace_events_co?igsh=MTR1aXQwb2RmdzRwbQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">@easeandgrace_events_co</a></span>
+            </div>
+            <div class="contact-item">
+              <strong>Based In</strong>
+              <span>Dallas–Fort Worth, Texas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<div class="gallery">
-
-<img src="images/event1.jpg">
-<img src="images/event2.jpg">
-
-</div>
-
-</section>
-
-<section id="contact">
-
-<h2>Contact</h2>
-
-<p>Email: hello@email.com</p>
-<p>Instagram: @eventplanner</p>
-
-</section>
-
-<footer>
-
-<p>Website Designed by Valencia Tshamanye</p>
-
-</footer>
-
+  <footer>
+    <div class="container footer-row">
+      <span>© 2026 Ease &amp; Grace Event Coordination</span>
+      <span>Website designed by Valencia Tshamanye</span>
+    </div>
+  </footer>
 </body>
 </html>
+
