@@ -127,8 +127,16 @@
       min-height:640px;
       position:relative;
     }
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(47,35,32,.22), rgba(47,35,32,0));
+      pointer-events:none;
+    }
     .hero-card img{
       width:100%;height:100%;object-fit:cover;
+      transform:scale(1.02);
     }
     .floating-badge{
       position:absolute;left:28px;bottom:28px;
@@ -198,8 +206,69 @@
     .gallery-wrap{
       display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
     }
-    .gallery-wrap img{
-      height:240px;object-fit:cover;border-radius:24px;box-shadow:var(--shadow)
+    .gallery-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      min-height:240px;
+      background:var(--white);
+    }
+    .gallery-card img{
+      height:100%;width:100%;object-fit:cover;
+      transition:transform .45s ease;
+    }
+    .gallery-card:hover img{transform:scale(1.06)}
+    .gallery-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(47,35,32,.35), rgba(47,35,32,.02));
+    }
+    .gallery-label{
+      position:absolute;
+      left:18px;bottom:16px;z-index:2;
+      color:#fff;
+      font-size:.8rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:600;
+    }
+
+    .reviews-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .review-card{
+      background:rgba(255,255,255,.68);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:24px 22px;
+      box-shadow:0 10px 28px rgba(82,53,38,.04);
+    }
+    .review-stars{color:var(--accent-deep);letter-spacing:.18em;margin-bottom:14px;font-size:.9rem}
+    .review-card h3{font-size:1.45rem;line-height:1.1;margin-bottom:12px}
+    .review-card p{color:#6c5d56;font-size:.97rem;margin-bottom:14px}
+    .review-name{font-size:.9rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:600}
+    .review-cta{
+      background:linear-gradient(180deg, #fff, #fcf7f3);
+      border-style:dashed;
+    }
+    .review-link{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:48px;padding:0 18px;border-radius:999px;
+      background:var(--accent);color:#fff;font-size:.84rem;
+      text-transform:uppercase;letter-spacing:.12em;font-weight:600;
+    }
+
+    .social-strip{
+      margin-top:18px;
+      display:flex;gap:12px;flex-wrap:wrap;
+    }
+    .social-pill{
+      border:1px solid var(--line);background:#fff;border-radius:999px;
+      padding:12px 18px;font-size:.84rem;text-transform:uppercase;letter-spacing:.12em;
     }
 
     .contact-box{
@@ -220,7 +289,7 @@
 
     @media (max-width:1100px){
       .hero-grid,.about-grid,.contact-box{grid-template-columns:1fr}
-      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .services-grid,.reviews-grid{grid-template-columns:repeat(2,1fr)}
       .gallery-wrap{grid-template-columns:repeat(2,1fr)}
       .hero-card{min-height:520px}
       .about-photo img{height:520px}
@@ -229,11 +298,10 @@
     @media (max-width:760px){
       .nav{padding:16px 0;flex-direction:column;align-items:flex-start}
       nav ul{gap:16px}
-      .brand-text strong{font-size:1.55rem}
       .hero{padding-top:24px}
       h1{font-size:3rem}
       .script-title{font-size:2.7rem}
-      .services-grid,.gallery-wrap{grid-template-columns:1fr}
+      .services-grid,.gallery-wrap,.reviews-grid{grid-template-columns:1fr}
       .hero-card{min-height:360px;border-radius:28px}
       .about-photo img{height:380px}
       .contact-box{padding:24px}
@@ -246,11 +314,7 @@
   <header>
     <div class="container nav">
       <a href="#home" class="brand">
-        <div class="brand-mark">E</div>
-        <div class="brand-text">
-          <strong>Ease &amp; Grace</strong>
-          <span>Event Coordination</span>
-        </div>
+        <img src="images/logo.png" alt="Ease & Grace Event Coordination logo" style="height:64px;object-fit:contain;">
       </a>
 
       <nav>
@@ -293,12 +357,13 @@
         </div>
 
         <div class="hero-card">
-          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80" alt="Elegant event table setting" />
+          <img src="images/hero-event.jpg" alt="Featured event" />
           <div class="floating-badge">
             <strong>Beautifully Planned</strong>
-            <span>with ease &amp; grace</span>
+            <span>with ease & grace</span>
           </div>
         </div>
+      </div>
       </div>
     </section>
 
@@ -348,7 +413,7 @@
     <section id="about">
       <div class="container about-grid">
         <div class="about-photo">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80" alt="Portrait of the lead event coordinator" />
+          <img src="images/coordinator.jpg" alt="Event coordinator portrait" />
         </div>
 
         <div class="about-copy">
@@ -374,10 +439,22 @@
           <div class="section-note">A space to showcase weddings, private events, décor, and behind-the-scenes moments</div>
         </div>
         <div class="gallery-wrap">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" alt="Wedding ceremony decor" />
-          <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80" alt="Reception floral styling" />
-          <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80" alt="Event table setup" />
-          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=80" alt="Elegant event reception" />
+          <div class="gallery-card">
+            <img src="images/event1.jpg" alt="Wedding ceremony decor" />
+            <div class="gallery-label">Wedding Design</div>
+          </div>
+          <div class="gallery-card">
+            <img src="images/event2.jpg" alt="Reception floral styling" />
+            <div class="gallery-label">Reception Styling</div>
+          </div>
+          <div class="gallery-card">
+            <img src="images/event3.jpg" alt="Luxury event details" />
+            <div class="gallery-label">Luxury Details</div>
+          </div>
+          <div class="gallery-card">
+            <img src="images/event4.jpg" alt="Private event coordination" />
+            <div class="gallery-label">Private Events</div>
+          </div>
         </div>
       </div>
     </section>
@@ -386,32 +463,36 @@
       <div class="container">
         <div class="section-head">
           <h2>Client Reviews</h2>
-          <div class="section-note">A place to build trust with kind words from past clients</div>
+          <div class="section-note">Kind words that build trust and show the experience</div>
         </div>
 
-        <div class="services-grid">
-          <article class="service-card" style="text-align:left;">
-            <h3 style="font-size:1.5rem;margin-bottom:14px;">Warm, organized, and seamless</h3>
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <h3>Warm, organized, and seamless</h3>
             <p>Ease &amp; Grace made our event feel so peaceful. Every detail was handled beautifully, and I was actually able to enjoy the day.</p>
-            <div class="price" style="font-size:1rem;">— Future client review</div>
+            <div class="review-name">— Future client review</div>
           </article>
 
-          <article class="service-card" style="text-align:left;">
-            <h3 style="font-size:1.5rem;margin-bottom:14px;">Elegant from start to finish</h3>
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <h3>Elegant from start to finish</h3>
             <p>The communication, setup, and coordination were amazing. Everything felt polished, intentional, and stress-free.</p>
-            <div class="price" style="font-size:1rem;">— Future client review</div>
+            <div class="review-name">— Future client review</div>
           </article>
 
-          <article class="service-card" style="text-align:left;">
-            <h3 style="font-size:1.5rem;margin-bottom:14px;">A beautiful experience</h3>
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <h3>A beautiful experience</h3>
             <p>She truly brought our vision to life. I would recommend Ease &amp; Grace to anyone looking for a coordinator with excellence and care.</p>
-            <div class="price" style="font-size:1rem;">— Future client review</div>
+            <div class="review-name">— Future client review</div>
           </article>
 
-          <article class="service-card" style="text-align:left;">
-            <h3 style="font-size:1.5rem;margin-bottom:14px;">Leave a Review</h3>
-            <p>You can later connect this section to a Google Form, Google Reviews, or a custom review form so clients can submit testimonials after each event.</p>
-            <a href="#contact" class="small-btn">Add Review Link Later</a>
+          <article class="review-card review-cta">
+            <div class="review-stars">★★★★★</div>
+            <h3>Leave a Review</h3>
+            <p>Add your Google review link, Google Form, or testimonial form here later so clients can submit kind words after their event.</p>
+            <a href="#contact" class="review-link">Add Review Link Later</a>
           </article>
         </div>
       </div>
@@ -426,6 +507,13 @@
             <p>
               Ready to create something beautiful? Reach out to discuss your date, your event type, and the experience you want your guests to remember.
             </p>
+          </div>
+          <div>
+            <div class="social-strip">
+              <a class="social-pill" href="https://www.instagram.com/easeandgrace_events_co?igsh=MTR1aXQwb2RmdzRwbQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <span class="social-pill">Gallery Ready</span>
+              <span class="social-pill">Reviews Ready</span>
+            </div>
           </div>
           <div class="contact-list">
             <div class="contact-item">
@@ -456,4 +544,5 @@
   </footer>
 </body>
 </html>
+
 
