@@ -1,17 +1,3 @@
-Use this **adjusted full style block**. It matches the latest full one-file website and includes the missing pieces for:
-
-* inquiry form
-* testimonial form
-* fade-up animation
-* hero divider
-* premium button styling
-* gallery slider
-* mobile layout
-* schedule / booking section support
-
-Replace your current `<style> ... </style>` with this:
-
-```css
 :root{
   --bg:#f5efe9;
   --bg-soft:#fcf8f4;
@@ -1070,5 +1056,4 @@ footer{
     text-align:center;
   }
 }
-```
 
