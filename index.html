@@ -26,8 +26,15 @@
       --max:1240px;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
 
     body{
       font-family:'Inter',sans-serif;
@@ -36,9 +43,20 @@
       line-height:1.6;
     }
 
-    img{max-width:100%;display:block}
-    a{text-decoration:none;color:inherit}
-    .container{width:min(92%,var(--max));margin:0 auto}
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:min(92%,var(--max));
+      margin:0 auto;
+    }
 
     header{
       position:sticky;
@@ -61,6 +79,7 @@
       display:flex;
       align-items:center;
       gap:14px;
+      flex-shrink:0;
     }
 
     .site-logo{
@@ -69,10 +88,17 @@
       object-fit:contain;
     }
 
+    nav{
+      flex:1;
+      display:flex;
+      justify-content:center;
+    }
+
     nav ul{
       list-style:none;
       display:flex;
       align-items:center;
+      justify-content:center;
       gap:30px;
       flex-wrap:wrap;
     }
@@ -127,7 +153,9 @@
       color:var(--accent-deep);
     }
 
-    .hero{padding:38px 0 36px}
+    .hero{
+      padding:38px 0 36px;
+    }
 
     .hero-grid{
       display:grid;
@@ -227,6 +255,8 @@
       border-radius:22px;
       backdrop-filter:blur(12px);
       box-shadow:0 10px 25px rgba(70,41,26,.08);
+      z-index:2;
+      max-width:260px;
     }
 
     .floating-badge strong{
@@ -243,7 +273,9 @@
       color:var(--muted);
     }
 
-    section{padding:34px 0}
+    section{
+      padding:34px 0;
+    }
 
     .section-head{
       display:flex;
@@ -573,22 +605,168 @@
         grid-template-columns:repeat(2,1fr);
       }
 
-      .hero-card{height:520px}
-      .about-photo img{height:520px}
-      .about-copy{padding:0}
+      .hero-card{
+        height:520px;
+      }
+
+      .about-photo img{
+        height:520px;
+      }
+
+      .about-copy{
+        padding:0;
+      }
+
+      .nav{
+        min-height:auto;
+        padding:20px 0;
+        flex-direction:column;
+      }
+
+      nav{
+        width:100%;
+      }
     }
 
     @media (max-width:760px){
-      .nav{
-        padding:16px 0;
-        flex-direction:column;
-        align-items:flex-start;
+      .container{
+        width:min(94%,var(--max));
       }
 
-      nav ul{gap:16px}
-      .hero{padding-top:24px}
-      h1{font-size:3rem}
-      .script-title{font-size:2.7rem}
+      .nav{
+        padding:14px 0 18px;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:14px;
+        text-align:center;
+      }
+
+      .brand{
+        justify-content:center;
+        width:100%;
+      }
+
+      .site-logo{
+        height:78px;
+      }
+
+      nav{
+        width:100%;
+        justify-content:center;
+      }
+
+      nav ul{
+        gap:12px 18px;
+        justify-content:center;
+      }
+
+      nav a{
+        font-size:.82rem;
+        letter-spacing:.06em;
+      }
+
+      header .btn.btn-primary{
+        width:100%;
+        max-width:260px;
+      }
+
+      .hero{
+        padding:24px 0 26px;
+      }
+
+      .hero-grid{
+        grid-template-columns:1fr;
+        gap:22px;
+      }
+
+      .hero-copy{
+        padding:0;
+        text-align:center;
+      }
+
+      .eyebrow{
+        font-size:.74rem;
+        letter-spacing:.16em;
+        margin-bottom:14px;
+      }
+
+      h1{
+        font-size:2.6rem;
+        margin-bottom:8px;
+      }
+
+      .script-title{
+        font-size:2.35rem;
+        margin-bottom:2px;
+      }
+
+      .hero-sub{
+        font-size:.98rem;
+        margin:16px auto 22px;
+        max-width:100%;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+        gap:12px;
+        margin-bottom:20px;
+      }
+
+      .hero-actions .btn{
+        width:100%;
+      }
+
+      .hero-meta{
+        justify-content:center;
+        gap:8px;
+        font-size:.72rem;
+        letter-spacing:.1em;
+      }
+
+      .hero-card{
+        height:320px;
+        border-radius:24px;
+      }
+
+      .floating-badge{
+        left:16px;
+        right:16px;
+        bottom:16px;
+        max-width:none;
+        padding:12px 14px;
+        border-radius:16px;
+      }
+
+      .floating-badge strong{
+        font-size:1.15rem;
+      }
+
+      .floating-badge span{
+        font-size:.68rem;
+        letter-spacing:.12em;
+      }
+
+      section{
+        padding:28px 0;
+      }
+
+      .section-head{
+        align-items:center;
+        flex-direction:column;
+        gap:8px;
+        margin-bottom:18px;
+        text-align:center;
+      }
+
+      .section-head h2{
+        font-size:2rem;
+      }
+
+      .section-note{
+        font-size:.78rem;
+        letter-spacing:.12em;
+      }
 
       .services-grid,
       .gallery-wrap,
@@ -596,16 +774,91 @@
         grid-template-columns:1fr;
       }
 
-      .hero-card{
-        height:360px;
-        border-radius:28px;
+      .service-card,
+      .review-card{
+        padding:22px 18px;
       }
 
-      .about-photo img{height:380px}
-      .contact-box{padding:24px}
-      .section-head{align-items:flex-start;flex-direction:column}
-      .hero-actions .btn{width:100%}
-      .site-logo{height:92px}
+      .service-card h3{
+        font-size:1.5rem;
+      }
+
+      .about-grid{
+        grid-template-columns:1fr;
+        gap:20px;
+      }
+
+      .about-photo{
+        padding:10px;
+        border-radius:24px;
+      }
+
+      .about-photo img{
+        height:360px;
+        border-radius:18px;
+      }
+
+      .about-copy{
+        padding:0;
+        text-align:center;
+      }
+
+      .about-copy h2{
+        font-size:2.2rem;
+      }
+
+      .about-copy .intro{
+        font-size:1.04rem;
+        margin-bottom:16px;
+      }
+
+      .about-copy p{
+        font-size:.98rem;
+      }
+
+      .quote-box{
+        margin-top:20px;
+        padding:18px 16px;
+        font-size:1.5rem;
+        border-radius:18px;
+      }
+
+      .gallery-card{
+        min-height:260px;
+      }
+
+      .contact-box{
+        padding:22px 16px;
+        border-radius:24px;
+        grid-template-columns:1fr;
+        gap:18px;
+      }
+
+      .contact-box h2{
+        font-size:2rem;
+      }
+
+      .contact-box p{
+        text-align:center;
+      }
+
+      .social-strip{
+        justify-content:center;
+      }
+
+      .contact-list{
+        gap:12px;
+      }
+
+      .contact-item{
+        padding:14px 16px;
+        text-align:center;
+      }
+
+      .footer-row{
+        flex-direction:column;
+        text-align:center;
+      }
     }
   </style>
 </head>
