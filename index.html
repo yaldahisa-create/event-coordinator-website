@@ -58,6 +58,17 @@
       margin:0 auto;
     }
 
+    .fade-up{
+      opacity:0;
+      transform:translateY(30px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+
+    .fade-up.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
     header{
       position:sticky;
       top:0;
@@ -131,26 +142,28 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      min-height:54px;
-      padding:0 28px;
+      min-height:56px;
+      padding:0 30px;
       border-radius:999px;
       font-weight:600;
       letter-spacing:.08em;
       text-transform:uppercase;
-      font-size:.86rem;
-      transition:.25s ease;
+      font-size:.84rem;
+      transition:all .28s ease;
+      cursor:pointer;
+      font-family:inherit;
     }
 
     .btn-primary{
-      background:var(--accent);
+      background:linear-gradient(135deg, var(--accent), var(--accent-deep));
       color:#fff;
-      border:1px solid var(--accent);
+      border:none;
+      box-shadow:0 12px 28px rgba(193,147,115,.22);
     }
 
     .btn-primary:hover{
-      background:var(--accent-deep);
-      border-color:var(--accent-deep);
-      transform:translateY(-1px);
+      transform:translateY(-2px);
+      box-shadow:0 18px 34px rgba(193,147,115,.28);
     }
 
     .btn-secondary{
@@ -162,8 +175,8 @@
 
     .btn-secondary:hover{
       border-color:#fff;
-      background:rgba(255,255,255,.14);
-      transform:translateY(-1px);
+      background:rgba(255,255,255,.16);
+      transform:translateY(-2px);
     }
 
     .hero-full{
@@ -200,9 +213,17 @@
       padding:40px 20px;
     }
 
+    .eyebrow{
+      font-size:.88rem;
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      color:var(--muted);
+      margin-bottom:18px;
+      font-weight:500;
+    }
+
     .hero-content .eyebrow{
       color:rgba(255,255,255,.86);
-      margin-bottom:18px;
     }
 
     h1,h2,h3,.script-title{
@@ -223,7 +244,14 @@
       font-size:clamp(2.7rem,7vw,5.4rem);
       font-style:italic;
       line-height:1;
-      margin-bottom:14px;
+      margin-bottom:12px;
+    }
+
+    .hero-divider{
+      width:110px;
+      height:1px;
+      margin:18px auto 22px;
+      background:linear-gradient(to right, transparent, #f1ddcf, transparent);
     }
 
     .hero-sub{
@@ -334,14 +362,16 @@
     .service-card,
     .review-card,
     .gallery-slide,
-    .contact-item{
+    .contact-item,
+    .testimonial-form{
       transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
     }
 
     .service-card:hover,
     .review-card:hover,
     .gallery-slide:hover,
-    .contact-item:hover{
+    .contact-item:hover,
+    .testimonial-form:hover{
       transform:translateY(-4px);
       box-shadow:0 22px 48px rgba(82,53,38,.10);
       border-color:rgba(209,168,140,.55);
@@ -543,6 +573,7 @@
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:18px;
+      margin-bottom:30px;
     }
 
     .review-stars{
@@ -584,6 +615,36 @@
       text-transform:uppercase;
       letter-spacing:.12em;
       font-weight:600;
+    }
+
+    .testimonial-form{
+      margin-top:10px;
+      background:rgba(255,255,255,.85);
+      border:1px solid rgba(234,223,216,.95);
+      padding:30px;
+      border-radius:28px;
+      box-shadow:0 18px 40px rgba(82,53,38,.06);
+      max-width:780px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .testimonial-form h3{
+      font-size:2rem;
+      margin-bottom:10px;
+      text-align:center;
+    }
+
+    .testimonial-form p{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:20px;
+    }
+
+    .testimonial-form form{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
     }
 
     .contact-box{
@@ -644,6 +705,55 @@
       text-transform:uppercase;
       color:var(--muted);
       margin-bottom:4px;
+    }
+
+    .contact-form{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea,
+    .testimonial-form input,
+    .testimonial-form select,
+    .testimonial-form textarea{
+      width:100%;
+      padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+      color:var(--text);
+      font:inherit;
+    }
+
+    .contact-form textarea,
+    .testimonial-form textarea{
+      resize:vertical;
+      min-height:140px;
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus,
+    .testimonial-form input:focus,
+    .testimonial-form select:focus,
+    .testimonial-form textarea:focus{
+      outline:none;
+      border-color:var(--accent-deep);
+    }
+
+    .inquiry-note{
+      font-size:.92rem;
+      color:var(--muted);
+      margin-top:10px;
     }
 
     footer{
@@ -855,7 +965,8 @@
       }
 
       .service-card,
-      .review-card{
+      .review-card,
+      .testimonial-form{
         padding:22px 18px;
       }
 
@@ -932,6 +1043,10 @@
         text-align:center;
       }
 
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
       .footer-row{
         flex-direction:column;
         text-align:center;
@@ -972,6 +1087,7 @@
         <div class="eyebrow">Elegant • Stress-Free • Seamless Events</div>
         <h1>Unforgettable</h1>
         <span class="script-title">Celebrations</span>
+        <div class="hero-divider"></div>
 
         <p class="hero-sub">
           Ease &amp; Grace coordinates refined weddings and events with calm precision, intentional detail, and a beautifully seamless experience from beginning to end.
@@ -997,7 +1113,7 @@
       </div>
     </section>
 
-    <section id="services">
+    <section id="services" class="fade-up">
       <div class="container">
         <div class="section-head">
           <h2>Our Services</h2>
@@ -1040,7 +1156,7 @@
       </div>
     </section>
 
-    <section id="about">
+    <section id="about" class="fade-up">
       <div class="container about-grid">
         <div class="about-photo">
           <img src="images/coordinator.jpg" alt="Event coordinator portrait" />
@@ -1062,7 +1178,7 @@
       </div>
     </section>
 
-    <section id="gallery">
+    <section id="gallery" class="fade-up">
       <div class="container">
         <div class="section-head">
           <h2>Gallery</h2>
@@ -1096,7 +1212,7 @@
       </div>
     </section>
 
-    <section id="reviews">
+    <section id="reviews" class="fade-up">
       <div class="container">
         <div class="section-head">
           <h2>Client Reviews</h2>
@@ -1128,55 +1244,120 @@
           <article class="review-card review-cta">
             <div class="review-stars">★★★★★</div>
             <h3>Leave a Review</h3>
-            <p>Add your Google review link, Google Form, or testimonial form here later so clients can submit kind words after their event.</p>
-            <a href="#contact" class="review-link">Add Review Link Later</a>
+            <p>Use the form below to leave a testimonial, or connect a Google Review link later.</p>
+            <a href="#testimonial-form" class="review-link">Leave Testimonial</a>
           </article>
+        </div>
+
+        <div class="testimonial-form fade-up" id="testimonial-form">
+          <h3>Leave a Testimonial</h3>
+          <p>We would love to hear about your experience working with Ease &amp; Grace.</p>
+
+          <form action="#" method="post">
+            <input type="text" name="testimonial_name" placeholder="Your Name" required>
+            <input type="email" name="testimonial_email" placeholder="Email Address" required>
+
+            <select name="testimonial_rating" required>
+              <option value="">Rating</option>
+              <option>★★★★★ Excellent</option>
+              <option>★★★★☆ Very Good</option>
+              <option>★★★☆☆ Good</option>
+              <option>★★☆☆☆ Fair</option>
+              <option>★☆☆☆☆ Poor</option>
+            </select>
+
+            <textarea name="testimonial_message" rows="5" placeholder="Share your experience..." required></textarea>
+
+            <button type="submit" class="btn btn-primary">Submit Testimonial</button>
+          </form>
         </div>
       </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="fade-up">
       <div class="container">
+        <div class="section-head">
+          <h2>Inquiry Form</h2>
+          <div class="section-note">Book your date, request a custom package, or schedule a consultation</div>
+        </div>
+
         <div class="contact-box">
           <div>
-            <div class="eyebrow">Contact</div>
-            <h2>Let’s Plan Your Event</h2>
+            <div class="eyebrow">Let’s Work Together</div>
+            <h2>Book Your Date</h2>
             <p>
-              Ready to create something beautiful? Reach out to discuss your date, your event type, and the experience you want your guests to remember.
+              Ready to create something beautiful? Fill out the inquiry form to book your date, request a custom package, or ask any questions about your event.
             </p>
 
             <div class="social-strip">
               <a class="social-pill" href="https://www.instagram.com/easeandgrace_events_co?igsh=MTR1aXQwb2RmdzRwbQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <span class="social-pill">Gallery Ready</span>
-              <span class="social-pill">Reviews Ready</span>
+              <a class="social-pill" href="https://calendly.com/YOUR-LINK" target="_blank" rel="noopener noreferrer">Schedule 1-on-1</a>
+              <span class="social-pill">24–48 Hour Response</span>
+            </div>
+
+            <p class="inquiry-note">
+              Please note: event dates are not officially reserved until availability is confirmed and deposit steps are completed.
+            </p>
+
+            <div class="contact-list" style="margin-top:18px;">
+              <div class="contact-item">
+                <strong>Email</strong>
+                <span>easeandgraceeventsco@gmail.com</span>
+              </div>
+
+              <div class="contact-item">
+                <strong>Instagram</strong>
+                <span>
+                  <a href="https://www.instagram.com/easeandgrace_events_co?igsh=MTR1aXQwb2RmdzRwbQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
+                    @easeandgrace_events_co
+                  </a>
+                </span>
+              </div>
+
+              <div class="contact-item">
+                <strong>Response Time</strong>
+                <span>24–48 Hours</span>
+              </div>
+
+              <div class="contact-item">
+                <strong>Based In</strong>
+                <span>Dallas–Fort Worth, Texas</span>
+              </div>
             </div>
           </div>
 
-          <div class="contact-list">
-            <div class="contact-item">
-              <strong>Email</strong>
-              <span>easeandgraceeventsco@gmail.com</span>
+          <form class="contact-form" action="#" method="post">
+            <div class="form-grid">
+              <input type="text" name="name" placeholder="Full Name" required>
+              <input type="email" name="email" placeholder="Email Address" required>
+              <input type="tel" name="phone" placeholder="Phone Number">
+              <input type="date" name="event_date" required>
+
+              <select name="inquiry_type" required>
+                <option value="">What would you like to do?</option>
+                <option value="book-date">Book My Date</option>
+                <option value="consultation">Schedule a Consultation</option>
+                <option value="custom-package">Request a Custom Package</option>
+                <option value="general-inquiry">General Inquiry</option>
+              </select>
+
+              <select name="service" required>
+                <option value="">Select Service</option>
+                <option value="day-of-coordination">Day-Of Coordination</option>
+                <option value="partial-planning">Partial Planning & Coordination</option>
+                <option value="full-coordination">Full Event Coordination</option>
+                <option value="custom-package">Custom Package Inquiry</option>
+              </select>
+
+              <input type="text" name="event_type" placeholder="Event Type">
+              <input type="text" name="location" placeholder="Event Location">
             </div>
 
-            <div class="contact-item">
-              <strong>Instagram</strong>
-              <span>
-                <a href="https://www.instagram.com/easeandgrace_events_co?igsh=MTR1aXQwb2RmdzRwbQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
-                  @easeandgrace_events_co
-                </a>
-              </span>
-            </div>
+            <textarea name="message" rows="6" placeholder="Tell us about your event, vision, guest count, and anything you would like us to know." required></textarea>
 
-            <div class="contact-item">
-              <strong>Response Time</strong>
-              <span>24–48 Hours</span>
-            </div>
-
-            <div class="contact-item">
-              <strong>Based In</strong>
-              <span>Dallas–Fort Worth, Texas</span>
-            </div>
-          </div>
+            <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+            <a href="https://calendly.com/YOUR-LINK" target="_blank" class="btn btn-primary">Schedule a 1-on-1 Meeting</a>
+          </form>
         </div>
       </div>
     </section>
@@ -1203,8 +1384,18 @@
         behavior: "smooth"
       });
     }
+
+    const fadeItems = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeItems.forEach(item => observer.observe(item));
   </script>
 </body>
 </html>
-
 
