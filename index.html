@@ -154,39 +154,55 @@
     }
 
     .btn-secondary{
-      border:1px solid var(--line);
-      background:var(--white);
-      color:var(--text);
+      border:1px solid rgba(255,255,255,.55);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      backdrop-filter:blur(6px);
     }
 
     .btn-secondary:hover{
-      border-color:var(--accent);
-      color:var(--accent-deep);
+      border-color:#fff;
+      background:rgba(255,255,255,.14);
       transform:translateY(-1px);
     }
 
-    .hero{
-      padding:38px 0 36px;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.02fr 1.08fr;
-      gap:34px;
+    .hero-full{
+      position:relative;
+      min-height:90vh;
+      display:flex;
       align-items:center;
+      justify-content:center;
+      overflow:hidden;
     }
 
-    .hero-copy{
-      padding:24px 8px 24px 4px;
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    .eyebrow{
-      font-size:.88rem;
-      text-transform:uppercase;
-      letter-spacing:.22em;
-      color:var(--muted);
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(to bottom, rgba(27,18,14,.18), rgba(27,18,14,.42)),
+        linear-gradient(to right, rgba(27,18,14,.20), rgba(27,18,14,.08));
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      color:#fff;
+      max-width:860px;
+      padding:40px 20px;
+    }
+
+    .hero-content .eyebrow{
+      color:rgba(255,255,255,.86);
       margin-bottom:18px;
-      font-weight:500;
     }
 
     h1,h2,h3,.script-title{
@@ -195,90 +211,68 @@
       line-height:.95;
     }
 
-    h1{
-      font-size:clamp(3.2rem,8vw,6rem);
+    .hero-content h1{
+      font-size:clamp(3.6rem,8vw,6.4rem);
+      margin-bottom:8px;
+      color:#fff;
+    }
+
+    .hero-content .script-title{
+      display:block;
+      color:#f1ddcf;
+      font-size:clamp(2.7rem,7vw,5.4rem);
+      font-style:italic;
+      line-height:1;
       margin-bottom:14px;
     }
 
-    .script-title{
-      display:block;
-      color:var(--accent-deep);
-      font-size:clamp(2.5rem,7vw,5.1rem);
-      font-style:italic;
-      line-height:1;
-      margin-top:2px;
-      margin-bottom:8px;
-    }
-
     .hero-sub{
-      max-width:580px;
-      color:#6f5f58;
-      font-size:1.06rem;
-      margin:22px 0 28px;
+      max-width:720px;
+      margin:20px auto 30px;
+      color:#f7f2ee;
+      font-size:1.08rem;
     }
 
     .hero-actions{
       display:flex;
       gap:16px;
+      justify-content:center;
       flex-wrap:wrap;
-      margin-bottom:28px;
+      margin-bottom:22px;
     }
 
     .hero-meta{
       display:flex;
+      justify-content:center;
       gap:14px;
       flex-wrap:wrap;
-      color:var(--muted);
+      color:rgba(255,255,255,.88);
       font-size:.9rem;
       text-transform:uppercase;
       letter-spacing:.14em;
     }
 
-    .hero-card{
-      background:var(--white);
-      border-radius:38px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-      height:640px;
-      position:relative;
-    }
-
-    .hero-card::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top, rgba(47,35,32,.22), rgba(47,35,32,0));
-      pointer-events:none;
-    }
-
-    .hero-card img{
-      width:100%;
-      height:100%;
-      display:block;
-      object-fit:cover;
-    }
-
-    .floating-badge{
+    .hero-floating-badge{
       position:absolute;
       left:28px;
       bottom:28px;
+      z-index:3;
       background:rgba(255,255,255,.92);
       padding:18px 22px;
       border-radius:22px;
       backdrop-filter:blur(12px);
       box-shadow:0 10px 25px rgba(70,41,26,.08);
-      z-index:2;
-      max-width:260px;
+      max-width:280px;
     }
 
-    .floating-badge strong{
+    .hero-floating-badge strong{
       display:block;
       font-family:'Cormorant Garamond',serif;
       font-size:1.6rem;
       color:var(--text);
     }
 
-    .floating-badge span{
+    .hero-floating-badge span{
       font-size:.84rem;
       text-transform:uppercase;
       letter-spacing:.18em;
@@ -668,7 +662,6 @@
     }
 
     @media (max-width:1100px){
-      .hero-grid,
       .about-grid,
       .contact-box{
         grid-template-columns:1fr;
@@ -681,10 +674,6 @@
 
       .gallery-slider{
         grid-auto-columns:calc(50% - 8px);
-      }
-
-      .hero-card{
-        height:520px;
       }
 
       .about-photo img{
@@ -767,34 +756,20 @@
         max-width:260px;
       }
 
-      .hero{
-        padding:24px 0 26px;
+      .hero-full{
+        min-height:78vh;
       }
 
-      .hero-grid{
-        grid-template-columns:1fr;
-        gap:22px;
+      .hero-content{
+        padding:28px 16px 34px;
       }
 
-      .hero-copy{
-        padding:0;
-        text-align:center;
+      .hero-content h1{
+        font-size:2.9rem;
       }
 
-      .eyebrow{
-        font-size:.74rem;
-        letter-spacing:.16em;
-        margin-bottom:14px;
-      }
-
-      h1{
-        font-size:2.6rem;
-        margin-bottom:8px;
-      }
-
-      .script-title{
-        font-size:2.35rem;
-        margin-bottom:2px;
+      .hero-content .script-title{
+        font-size:2.45rem;
       }
 
       .hero-sub{
@@ -820,12 +795,7 @@
         letter-spacing:.1em;
       }
 
-      .hero-card{
-        height:320px;
-        border-radius:24px;
-      }
-
-      .floating-badge{
+      .hero-floating-badge{
         left:16px;
         right:16px;
         bottom:16px;
@@ -834,11 +804,11 @@
         border-radius:16px;
       }
 
-      .floating-badge strong{
+      .hero-floating-badge strong{
         font-size:1.15rem;
       }
 
-      .floating-badge span{
+      .hero-floating-badge span{
         font-size:.68rem;
         letter-spacing:.12em;
       }
@@ -994,36 +964,36 @@
   </header>
 
   <main id="home">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">Elegant • Stress-Free • Seamless Events</div>
-          <h1>We Create</h1>
-          <span class="script-title">Unforgettable</span>
-          <h1>Moments</h1>
-          <p class="hero-sub">
-            Ease &amp; Grace brings calm coordination, intentional details, and polished event execution so your celebration feels beautiful from beginning to end.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Book Your Date</a>
-            <a class="btn btn-secondary" href="#services">View Services</a>
-          </div>
-          <div class="hero-meta">
-            <span>Weddings</span>
-            <span>•</span>
-            <span>Private Events</span>
-            <span>•</span>
-            <span>Luxury Coordination</span>
-          </div>
+    <section class="hero-full">
+      <img src="images/hero-event.jpg" alt="Luxury featured event" class="hero-bg">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <div class="eyebrow">Elegant • Stress-Free • Seamless Events</div>
+        <h1>Unforgettable</h1>
+        <span class="script-title">Celebrations</span>
+
+        <p class="hero-sub">
+          Ease &amp; Grace coordinates refined weddings and events with calm precision, intentional detail, and a beautifully seamless experience from beginning to end.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Book Your Date</a>
+          <a class="btn btn-secondary" href="#services">View Services</a>
         </div>
 
-        <div class="hero-card">
-          <img src="images/hero-event.jpg" alt="Featured event" />
-          <div class="floating-badge">
-            <strong>Beautifully Planned</strong>
-            <span>with ease &amp; grace</span>
-          </div>
+        <div class="hero-meta">
+          <span>Weddings</span>
+          <span>•</span>
+          <span>Private Events</span>
+          <span>•</span>
+          <span>Luxury Coordination</span>
         </div>
+      </div>
+
+      <div class="hero-floating-badge">
+        <strong>Beautifully Planned</strong>
+        <span>with ease &amp; grace</span>
       </div>
     </section>
 
