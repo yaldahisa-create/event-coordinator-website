@@ -20,6 +20,9 @@
       --accent:#d1a88c;
       --accent-deep:#c19373;
       --shadow:0 14px 40px rgba(82,53,38,.08);
+      --radius-xl:34px;
+      --radius-lg:24px;
+      --radius-md:18px;
       --max:1240px;
     }
 
@@ -342,14 +345,26 @@
       letter-spacing:.18em;
     }
 
-    .services-grid{
+    .services-grid,
+    .process-grid,
+    .events-grid,
+    .why-grid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:18px;
     }
 
+    .process-grid,
+    .events-grid,
+    .why-grid{
+      grid-template-columns:repeat(3,1fr);
+    }
+
     .service-card,
-    .review-card{
+    .review-card,
+    .process-card,
+    .event-card,
+    .why-card{
       background:rgba(255,255,255,.78);
       border:1px solid rgba(234,223,216,.95);
       border-radius:28px;
@@ -363,7 +378,11 @@
     .review-card,
     .gallery-slide,
     .contact-item,
-    .testimonial-form{
+    .testimonial-form,
+    .process-card,
+    .event-card,
+    .why-card,
+    .faq-card{
       transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
     }
 
@@ -371,7 +390,11 @@
     .review-card:hover,
     .gallery-slide:hover,
     .contact-item:hover,
-    .testimonial-form:hover{
+    .testimonial-form:hover,
+    .process-card:hover,
+    .event-card:hover,
+    .why-card:hover,
+    .faq-card:hover{
       transform:translateY(-4px);
       box-shadow:0 22px 48px rgba(82,53,38,.10);
       border-color:rgba(209,168,140,.55);
@@ -390,14 +413,20 @@
       font-size:1.5rem;
     }
 
-    .service-card h3{
+    .service-card h3,
+    .process-card h3,
+    .event-card h3,
+    .why-card h3{
       font-size:1.7rem;
       line-height:1.1;
       margin-bottom:10px;
     }
 
     .service-card p,
-    .review-card p{
+    .review-card p,
+    .process-card p,
+    .event-card p,
+    .why-card p{
       color:var(--muted);
       margin-bottom:14px;
       font-size:.96rem;
@@ -647,6 +676,35 @@
       gap:14px;
     }
 
+    .faq-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .faq-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:20px 18px;
+      box-shadow:0 10px 26px rgba(82,53,38,.04);
+    }
+
+    .faq-card strong{
+      display:block;
+      font-size:.9rem;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:var(--accent-deep);
+      margin-bottom:8px;
+    }
+
+    .faq-card p{
+      color:#6e6059;
+      font-size:.97rem;
+      margin:0;
+    }
+
     .contact-box{
       background:linear-gradient(135deg, rgba(255,255,255,.84), rgba(255,250,246,.96));
       border:1px solid rgba(234,223,216,.95);
@@ -773,12 +831,19 @@
 
     @media (max-width:1100px){
       .about-grid,
-      .contact-box{
+      .contact-box,
+      .faq-grid{
         grid-template-columns:1fr;
       }
 
       .services-grid,
       .reviews-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .process-grid,
+      .events-grid,
+      .why-grid{
         grid-template-columns:repeat(2,1fr);
       }
 
@@ -950,7 +1015,11 @@
       }
 
       .services-grid,
-      .reviews-grid{
+      .reviews-grid,
+      .process-grid,
+      .events-grid,
+      .why-grid,
+      .faq-grid{
         grid-template-columns:1fr;
       }
 
@@ -966,11 +1035,18 @@
 
       .service-card,
       .review-card,
-      .testimonial-form{
+      .testimonial-form,
+      .process-card,
+      .event-card,
+      .why-card,
+      .faq-card{
         padding:22px 18px;
       }
 
-      .service-card h3{
+      .service-card h3,
+      .process-card h3,
+      .event-card h3,
+      .why-card h3{
         font-size:1.5rem;
       }
 
@@ -1063,13 +1139,15 @@
 
       <nav class="nav-menu">
         <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open menu">☰</button>
-
         <ul id="mobileMenu">
           <li><a class="active" href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
+          <li><a href="#why-choose-us">Why Choose Us</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -1090,7 +1168,7 @@
         <div class="hero-divider"></div>
 
         <p class="hero-sub">
-          Ease &amp; Grace coordinates refined weddings and events with calm precision, intentional detail, and a beautifully seamless experience from beginning to end.
+          Ease &amp; Grace coordinates weddings, private parties, and special celebrations with calm precision, thoughtful detail, and a beautifully seamless experience from beginning to end.
         </p>
 
         <div class="hero-actions">
@@ -1103,7 +1181,7 @@
           <span>•</span>
           <span>Private Events</span>
           <span>•</span>
-          <span>Luxury Coordination</span>
+          <span>Meaningful Celebrations</span>
         </div>
       </div>
 
@@ -1148,9 +1226,96 @@
           <article class="service-card">
             <div class="icon-wrap">♡</div>
             <h3>Custom<br>Packages</h3>
-            <p>Custom options designed for your event size, venue, and vision.</p>
+            <p>Custom options designed for weddings, parties, showers, corporate events, and all special celebrations.</p>
             <div class="price">Inquire</div>
             <a href="#contact" class="small-btn">Contact</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-choose-us" class="fade-up">
+      <div class="container">
+        <div class="section-head">
+          <h2>Why Choose Ease &amp; Grace</h2>
+          <div class="section-note">A calm and intentional experience</div>
+        </div>
+
+        <div class="why-grid">
+          <article class="why-card">
+            <div class="icon-wrap">✦</div>
+            <h3>Calm Presence</h3>
+            <p>Every celebration is handled with care, peace, and professionalism from beginning to end.</p>
+          </article>
+
+          <article class="why-card">
+            <div class="icon-wrap">✿</div>
+            <h3>Intentional Detail</h3>
+            <p>From timelines to finishing touches, each detail is thoughtfully coordinated with elegance.</p>
+          </article>
+
+          <article class="why-card">
+            <div class="icon-wrap">❊</div>
+            <h3>Seamless Execution</h3>
+            <p>Our goal is to create a smooth, beautiful experience so you can be fully present in your moment.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="fade-up">
+      <div class="container">
+        <div class="section-head">
+          <h2>The Process</h2>
+          <div class="section-note">How booking works</div>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card">
+            <div class="icon-wrap">①</div>
+            <h3>Submit Inquiry</h3>
+            <p>Share your event details through the inquiry form so your request can be carefully reviewed.</p>
+          </article>
+
+          <article class="process-card">
+            <div class="icon-wrap">②</div>
+            <h3>Consultation</h3>
+            <p>After your inquiry is reviewed, a conversation is scheduled to discuss your vision and event needs.</p>
+          </article>
+
+          <article class="process-card">
+            <div class="icon-wrap">③</div>
+            <h3>Secure Your Date</h3>
+            <p>Your booking is confirmed only after your inquiry is reviewed and you have spoken directly with Marie-Esperance.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="event-types" class="fade-up">
+      <div class="container">
+        <div class="section-head">
+          <h2>Events We Coordinate</h2>
+          <div class="section-note">Beautiful support for every celebration</div>
+        </div>
+
+        <div class="events-grid">
+          <article class="event-card">
+            <div class="icon-wrap">♡</div>
+            <h3>Weddings</h3>
+            <p>Ceremonies, receptions, and wedding celebrations coordinated with elegance and care.</p>
+          </article>
+
+          <article class="event-card">
+            <div class="icon-wrap">✦</div>
+            <h3>Private Parties</h3>
+            <p>Birthday celebrations, anniversaries, dinners, and meaningful gatherings of all kinds.</p>
+          </article>
+
+          <article class="event-card">
+            <div class="icon-wrap">✿</div>
+            <h3>Special Events</h3>
+            <p>Baby showers, engagement celebrations, corporate gatherings, graduations, and custom events.</p>
           </article>
         </div>
       </div>
@@ -1274,6 +1439,37 @@
       </div>
     </section>
 
+    <section id="faq" class="fade-up">
+      <div class="container">
+        <div class="section-head">
+          <h2>Frequently Asked Questions</h2>
+          <div class="section-note">Helpful answers before you book</div>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-card">
+            <strong>How do I book my date?</strong>
+            <p>Bookings are secured only after your inquiry has been reviewed and you have spoken directly with Marie-Esperance.</p>
+          </div>
+
+          <div class="faq-card">
+            <strong>Do you only coordinate weddings?</strong>
+            <p>No. Ease &amp; Grace coordinates weddings, private parties, and many other special events.</p>
+          </div>
+
+          <div class="faq-card">
+            <strong>How soon will I receive a response?</strong>
+            <p>Please allow 24–48 hours for a response after submitting your inquiry.</p>
+          </div>
+
+          <div class="faq-card">
+            <strong>Can I request a custom package?</strong>
+            <p>Yes. Custom coordination packages are available based on your event needs and vision.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="fade-up">
       <div class="container">
         <div class="section-head">
@@ -1296,7 +1492,7 @@
             </div>
 
             <p class="inquiry-note">
-              Please note: event dates are not officially reserved until availability is confirmed and deposit steps are completed.
+              Please note: bookings are secured only after your inquiry has been reviewed and you have spoken directly with Marie-Esperance.
             </p>
 
             <div class="contact-list" style="margin-top:18px;">
