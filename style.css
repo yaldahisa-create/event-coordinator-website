@@ -343,6 +343,7 @@ section{
   letter-spacing:.18em;
 }
 
+/* shared grids */
 .services-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -350,7 +351,10 @@ section{
 }
 
 .service-card,
-.review-card{
+.review-card,
+.process-card,
+.event-card,
+.why-card{
   background:rgba(255,255,255,.78);
   border:1px solid rgba(234,223,216,.95);
   border-radius:28px;
@@ -364,7 +368,11 @@ section{
 .review-card,
 .gallery-slide,
 .contact-item,
-.testimonial-form{
+.testimonial-form,
+.process-card,
+.event-card,
+.why-card,
+.faq-card{
   transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
 }
 
@@ -372,7 +380,11 @@ section{
 .review-card:hover,
 .gallery-slide:hover,
 .contact-item:hover,
-.testimonial-form:hover{
+.testimonial-form:hover,
+.process-card:hover,
+.event-card:hover,
+.why-card:hover,
+.faq-card:hover{
   transform:translateY(-4px);
   box-shadow:0 22px 48px rgba(82,53,38,.10);
   border-color:rgba(209,168,140,.55);
@@ -391,14 +403,20 @@ section{
   font-size:1.5rem;
 }
 
-.service-card h3{
+.service-card h3,
+.process-card h3,
+.event-card h3,
+.why-card h3{
   font-size:1.7rem;
   line-height:1.1;
   margin-bottom:10px;
 }
 
 .service-card p,
-.review-card p{
+.review-card p,
+.process-card p,
+.event-card p,
+.why-card p{
   color:var(--muted);
   margin-bottom:14px;
   font-size:.96rem;
@@ -487,6 +505,21 @@ section{
   font-style:italic;
   font-size:2rem;
   color:var(--accent-deep);
+}
+
+/* process / events / why choose */
+.process-grid,
+.events-grid,
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.process-card .icon-wrap,
+.event-card .icon-wrap,
+.why-card .icon-wrap{
+  font-size:1.35rem;
 }
 
 /* gallery slider */
@@ -650,6 +683,36 @@ section{
   gap:14px;
 }
 
+/* faq */
+.faq-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.faq-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:20px 18px;
+  box-shadow:0 10px 26px rgba(82,53,38,.04);
+}
+
+.faq-card strong{
+  display:block;
+  font-size:.9rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--accent-deep);
+  margin-bottom:8px;
+}
+
+.faq-card p{
+  color:#6e6059;
+  font-size:.97rem;
+  margin:0;
+}
+
 /* inquiry form */
 .contact-box{
   background:linear-gradient(135deg, rgba(255,255,255,.84), rgba(255,250,246,.96));
@@ -777,12 +840,19 @@ footer{
 
 @media (max-width:1100px){
   .about-grid,
-  .contact-box{
+  .contact-box,
+  .faq-grid{
     grid-template-columns:1fr;
   }
 
   .services-grid,
   .reviews-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .process-grid,
+  .events-grid,
+  .why-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
@@ -954,7 +1024,11 @@ footer{
   }
 
   .services-grid,
-  .reviews-grid{
+  .reviews-grid,
+  .process-grid,
+  .events-grid,
+  .why-grid,
+  .faq-grid{
     grid-template-columns:1fr;
   }
 
@@ -970,11 +1044,18 @@ footer{
 
   .service-card,
   .review-card,
-  .testimonial-form{
+  .testimonial-form,
+  .process-card,
+  .event-card,
+  .why-card,
+  .faq-card{
     padding:22px 18px;
   }
 
-  .service-card h3{
+  .service-card h3,
+  .process-card h3,
+  .event-card h3,
+  .why-card h3{
     font-size:1.5rem;
   }
 
@@ -1056,4 +1137,3 @@ footer{
     text-align:center;
   }
 }
-
