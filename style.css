@@ -1,3 +1,17 @@
+Use this **adjusted full style block**. It matches the latest full one-file website and includes the missing pieces for:
+
+* inquiry form
+* testimonial form
+* fade-up animation
+* hero divider
+* premium button styling
+* gallery slider
+* mobile layout
+* schedule / booking section support
+
+Replace your current `<style> ... </style>` with this:
+
+```css
 :root{
   --bg:#f5efe9;
   --bg-soft:#fcf8f4;
@@ -47,6 +61,18 @@ a{
 .container{
   width:min(92%,var(--max));
   margin:0 auto;
+}
+
+/* animations */
+.fade-up{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+
+.fade-up.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 header{
@@ -117,31 +143,34 @@ header{
   color:var(--accent-deep);
 }
 
+/* buttons */
 .btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
   gap:10px;
-  min-height:54px;
-  padding:0 28px;
+  min-height:56px;
+  padding:0 30px;
   border-radius:999px;
   font-weight:600;
   letter-spacing:.08em;
   text-transform:uppercase;
-  font-size:.86rem;
-  transition:.25s ease;
+  font-size:.84rem;
+  transition:all .28s ease;
+  cursor:pointer;
+  font-family:inherit;
 }
 
 .btn-primary{
-  background:var(--accent);
+  background:linear-gradient(135deg, var(--accent), var(--accent-deep));
   color:#fff;
-  border:1px solid var(--accent);
+  border:none;
+  box-shadow:0 12px 28px rgba(193,147,115,.22);
 }
 
 .btn-primary:hover{
-  background:var(--accent-deep);
-  border-color:var(--accent-deep);
-  transform:translateY(-1px);
+  transform:translateY(-2px);
+  box-shadow:0 18px 34px rgba(193,147,115,.28);
 }
 
 .btn-secondary{
@@ -153,8 +182,8 @@ header{
 
 .btn-secondary:hover{
   border-color:#fff;
-  background:rgba(255,255,255,.14);
-  transform:translateY(-1px);
+  background:rgba(255,255,255,.16);
+  transform:translateY(-2px);
 }
 
 /* full hero */
@@ -230,7 +259,14 @@ h1,h2,h3,.script-title{
 .hero-content .script-title{
   color:#f1ddcf;
   font-size:clamp(2.7rem,7vw,5.4rem);
-  margin-bottom:14px;
+  margin-bottom:12px;
+}
+
+.hero-divider{
+  width:110px;
+  height:1px;
+  margin:18px auto 22px;
+  background:linear-gradient(to right, transparent, #f1ddcf, transparent);
 }
 
 .hero-sub{
@@ -341,14 +377,16 @@ section{
 .service-card,
 .review-card,
 .gallery-slide,
-.contact-item{
+.contact-item,
+.testimonial-form{
   transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
 }
 
 .service-card:hover,
 .review-card:hover,
 .gallery-slide:hover,
-.contact-item:hover{
+.contact-item:hover,
+.testimonial-form:hover{
   transform:translateY(-4px);
   box-shadow:0 22px 48px rgba(82,53,38,.10);
   border-color:rgba(209,168,140,.55);
@@ -551,6 +589,7 @@ section{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:18px;
+  margin-bottom:30px;
 }
 
 .review-stars{
@@ -594,6 +633,38 @@ section{
   font-weight:600;
 }
 
+/* testimonial form */
+.testimonial-form{
+  margin-top:10px;
+  background:rgba(255,255,255,.85);
+  border:1px solid rgba(234,223,216,.95);
+  padding:30px;
+  border-radius:28px;
+  box-shadow:0 18px 40px rgba(82,53,38,.06);
+  max-width:780px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.testimonial-form h3{
+  font-size:2rem;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+.testimonial-form p{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+.testimonial-form form{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+/* inquiry form */
 .contact-box{
   background:linear-gradient(135deg, rgba(255,255,255,.84), rgba(255,250,246,.96));
   border:1px solid rgba(234,223,216,.95);
@@ -652,6 +723,55 @@ section{
   text-transform:uppercase;
   color:var(--muted);
   margin-bottom:4px;
+}
+
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea,
+.testimonial-form input,
+.testimonial-form select,
+.testimonial-form textarea{
+  width:100%;
+  padding:14px 16px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  color:var(--text);
+  font:inherit;
+}
+
+.contact-form textarea,
+.testimonial-form textarea{
+  resize:vertical;
+  min-height:140px;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus,
+.testimonial-form input:focus,
+.testimonial-form select:focus,
+.testimonial-form textarea:focus{
+  outline:none;
+  border-color:var(--accent-deep);
+}
+
+.inquiry-note{
+  font-size:.92rem;
+  color:var(--muted);
+  margin-top:10px;
 }
 
 footer{
@@ -863,7 +983,8 @@ footer{
   }
 
   .service-card,
-  .review-card{
+  .review-card,
+  .testimonial-form{
     padding:22px 18px;
   }
 
@@ -940,9 +1061,14 @@ footer{
     text-align:center;
   }
 
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
   .footer-row{
     flex-direction:column;
     text-align:center;
   }
 }
+```
 
